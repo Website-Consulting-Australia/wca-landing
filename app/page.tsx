@@ -75,14 +75,7 @@ export default function Page() {
         <Reviews />
 
         {/* Repurpose Download -> Primary CTA */}
-        <Download
-          title="Get a Free Website Audit"
-          subtitle="We’ll review speed, SEO, and UX—then give you a clear, prioritised action plan."
-          primaryCtaText="Book Your Audit"
-          primaryCtaHref="/contact"
-          secondaryCtaText="See What’s Included"
-          secondaryCtaHref="/services#audit"
-        />
+        <Download/>
       </main>
       <Footer />
     </div>
