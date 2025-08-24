@@ -1,15 +1,27 @@
 {
-  "name": "nextjs-saas-starter-template",
+  "name": "website-consulting-australia",
   "version": "1.0.0",
-  "description": "Nextjs Saas Starter Template",
+  "description": "Website Consulting Australia – Expert web consulting, optimisation, and digital strategy for Australian businesses.",
+  "keywords": [
+    "website consulting",
+    "website optimisation",
+    "SEO consulting",
+    "UX consulting",
+    "digital strategy",
+    "website performance",
+    "conversion optimisation",
+    "Australia",
+    "web consulting Australia",
+    "business websites"
+  ],
+  "author": "Website Consulting Australia",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "next": "^14.2.15",
     "next-themes": "^0.3.0",

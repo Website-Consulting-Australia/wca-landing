@@ -1,26 +1,86 @@
-import { AiOutlineFacebook, AiOutlineX, AiOutlineGithub, AiOutlineLinkedin, AiOutlineInstagram } from "react-icons/ai";
+import {
+  AiOutlineFacebook,
+  AiOutlineX,
+  AiOutlineGithub,
+  AiOutlineLinkedin,
+  AiOutlineInstagram,
+} from "react-icons/ai";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-white border-t border-gray-100 dark:bg-black shadow-sm text-gray-400 py-6 dark:border-t dark:border-gray-800">
-      <div className="container mx-auto px-4 flex flex-wrap justify-center sm:justify-between items-center text-sm">
-        <p className="ml-4">&copy; {currentYear} Your Company Name. All rights reserved.</p>
-        <div className="flex space-x-4 mt-2 mr-4 sm:mt-0">
-          <a href="#" aria-label="Facebook" className="hover:text-gray-300">
+    <footer className="bg-white border-t border-gray-100 dark:bg-black shadow-sm text-gray-500 dark:text-gray-400 py-8 dark:border-gray-800">
+      <div className="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center text-sm space-y-4 sm:space-y-0">
+        {/* Left side: business name + tagline */}
+        <div className="text-center sm:text-left">
+          <p>&copy; {currentYear} Website Consulting Australia. All rights reserved.</p>
+          <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
+            Helping Australian businesses grow online through performance, SEO & UX.
+          </p>
+        </div>
+
+        {/* Center: nav links */}
+        <div className="flex flex-wrap justify-center space-x-6 text-gray-600 dark:text-gray-400">
+          <a href="/" className="hover:text-black dark:hover:text-white transition-colors">
+            Home
+          </a>
+          <a href="/services" className="hover:text-black dark:hover:text-white transition-colors">
+            Services
+          </a>
+          <a href="/contact" className="hover:text-black dark:hover:text-white transition-colors">
+            Contact
+          </a>
+          <a href="/privacy" className="hover:text-black dark:hover:text-white transition-colors">
+            Privacy
+          </a>
+        </div>
+
+        {/* Right side: social icons */}
+        <div className="flex space-x-4">
+          <a
+            href="https://facebook.com/yourpage"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+            className="hover:text-blue-600"
+          >
             <AiOutlineFacebook className="w-5 h-5" />
           </a>
-          <a href="#" aria-label="LinkedIn" className="hover:text-gray-300">
+          <a
+            href="https://linkedin.com/company/yourpage"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="hover:text-blue-500"
+          >
             <AiOutlineLinkedin className="w-5 h-5" />
           </a>
-          <a href="#" aria-label="Instagram" className="hover:text-gray-300">
+          <a
+            href="https://instagram.com/yourpage"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            className="hover:text-pink-500"
+          >
             <AiOutlineInstagram className="w-5 h-5" />
           </a>
-          <a href="#" aria-label="X (formerly Twitter)" className="hover:text-gray-300">
+          <a
+            href="https://twitter.com/yourpage"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="X (Twitter)"
+            className="hover:text-black dark:hover:text-white"
+          >
             <AiOutlineX className="w-5 h-5" />
           </a>
-          <a href="#" aria-label="GitHub" className="hover:text-gray-300">
+          <a
+            href="https://github.com/yourrepo"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="hover:text-gray-700 dark:hover:text-gray-200"
+          >
             <AiOutlineGithub className="w-5 h-5" />
           </a>
         </div>

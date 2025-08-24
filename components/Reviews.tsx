@@ -12,38 +12,39 @@ interface ReviewsProps {
   reviews?: ReviewData[];
 }
 
+// Placeholder reviews — swap these out once real testimonials come in
 const defaultReviews: ReviewData[] = [
   {
     rating: 5,
-    title: "Best app ever!",
+    title: "Improved site speed dramatically",
     content:
-      "This app has been a game-changer for me! It's made tracking my daily activities so much easier. I love how intuitive and user-friendly it is.",
-    author: "Jonas Aly",
-    designation: "Founder @ Company",
+      "Our load times dropped from 5 seconds to under 2 seconds after their audit and fixes. The difference in conversions was immediate.",
+    author: "Sarah L.",
+    designation: "Ecommerce Manager",
   },
   {
     rating: 5,
-    title: "Super helpful to stay organized",
+    title: "SEO guidance that actually works",
     content:
-      "I can't thank this app enough for helping me stay on top of my tasks. The reminders have saved me from missing important deadlines, and I'm much more organized now.",
-    author: "Mark Bures",
-    designation: "Businessman",
+      "We’d been stuck on page 3 for months. Within 8 weeks of following their SEO roadmap, we hit page 1 for our main keywords.",
+    author: "James K.",
+    designation: "Founder, SaaS Startup",
   },
   {
     rating: 5,
-    title: "Great app that saves time",
+    title: "User experience overhaul",
     content:
-      "The app's integration with my other tools is seamless. I can easily check my progress and activities without having to switch between multiple platforms.",
-    author: "William Kolas",
-    designation: "Student",
+      "Their UX recommendations made our onboarding flow 10x smoother. Support tickets dropped noticeably after the changes.",
+    author: "Elena R.",
+    designation: "Product Lead",
   },
   {
     rating: 4,
-    title: "Seriously life changing app!",
+    title: "Actionable and transparent",
     content:
-      "The insights and reports have been eye-opening. I now have a better understanding of my habits and can make adjustments to improve my productivity.",
-    author: "Andrew Chan",
-    designation: "Manager @ AB Company",
+      "We appreciated how clear the reporting was. No fluff, just a prioritized list of what to do and the results we should expect.",
+    author: "Michael T.",
+    designation: "Marketing Director",
   },
 ];
 
@@ -52,7 +53,7 @@ const Reviews: React.FC<ReviewsProps> = ({ reviews = defaultReviews }) => {
     <section className="py-24 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl text-center mb-8 text-gray-900 dark:text-white">
-          A beautiful reviews section
+          What Our Clients Say
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8">
           {reviews.map((review, index) => (
