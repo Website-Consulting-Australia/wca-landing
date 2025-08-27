@@ -4,6 +4,10 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      colors: {
+        "brand-blue": "#2563EB",
+        "brand-green": "#16A34A",
+      },
       fontFamily: {
         sans: [
           "Inter Tight",

@@ -52,8 +52,11 @@ const Features = () => {
             How We Help Your Business Grow
           </h2>
           <p className="mt-8 text-xl text-gray-600 dark:text-gray-300 font-light max-w-3xl mx-auto">
-            Website Consulting Australia partners with you to improve SEO, performance, and user experience — all with
-            one goal: turning your website into a growth engine.
+            Website Consulting Australia partners with you to improve
+            <span className="font-semibold"> SEO</span>,
+            <span className="font-semibold"> performance</span>, and
+            <span className="font-semibold"> user experience</span> — all with one goal:
+            turning your website into a <span className="font-semibold">growth engine</span>.
           </p>
         </div>
         <div className="mt-10">

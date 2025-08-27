@@ -89,7 +89,7 @@ const Accordion: React.FC<AccordionProps> = ({ items = faqItems }) => {
   };
 
   return (
-    <div className="w-[90%]">
+    <div className="w-full sm:w-[90%]">
       {items.map((item, index) => (
         <AccordionItem
           key={index}

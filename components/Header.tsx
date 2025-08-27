@@ -15,7 +15,8 @@ export default function Header() {
             height={200}
             className="max-h-10 w-auto"
           />
-          <span className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+          {/* Hide text on phones, show from sm+ */}
+          <span className="hidden sm:block text-xl font-semibold text-gray-900 dark:text-gray-100">
             Website Consulting Australia
           </span>
         </Link>
@@ -33,8 +34,8 @@ export default function Header() {
             </li>
             <li>
               <Link
-                href="/contact"
-                className="text-sm font-semibold bg-black text-white dark:bg-white dark:text-black px-4 py-2 rounded-md hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
+                href="/book"
+                className="text-sm font-semibold bg-brand-blue text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
               >
                 Book a Consultation
               </Link>

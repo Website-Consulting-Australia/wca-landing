@@ -4,7 +4,7 @@ import Script from "next/script";
 
 export default function CalendlyInline({
                                          url,
-                                         height = 680,
+                                         height = 900,
                                        }: {
   url: string;
   height?: number;

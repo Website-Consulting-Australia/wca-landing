@@ -4,17 +4,17 @@ import {
   SiWix,
   SiBigcommerce,
   SiMagento,
-  SiWoocommerce,
+  SiWordpress,
   SiSquarespace,
   SiDotnet,
-} from "react-icons/si";
+} from 'react-icons/si'
 
 const platforms = [
   { name: "Shopify", Icon: SiShopify },
   { name: "Wix", Icon: SiWix },
   { name: "BigCommerce", Icon: SiBigcommerce },
   { name: "Magento", Icon: SiMagento },
-  { name: "WooCommerce", Icon: SiWoocommerce },
+  { name: "Wordpress", Icon: SiWordpress },
   { name: "Squarespace", Icon: SiSquarespace },
   { name: "ASP.NET", Icon: SiDotnet },
 ];
@@ -47,7 +47,7 @@ const Customers: React.FC = () => {
 
         {/* Optional small caption under the row */}
         {/*<p className="mt-6 text-center text-sm text-white/70 dark:text-black/70">*/}
-        {/*  Shopify · Wix · BigCommerce · Magento · WooCommerce · Squarespace · ASP.NET*/}
+        {/*  Shopify · Wix · BigCommerce · Magento · Wordpress · Squarespace · ASP.NET*/}
         {/*</p>*/}
       </div>
     </div>
