@@ -1,0 +1,18 @@
+export const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID ?? "";
+
+declare global {
+  interface Window {
+    fbq: (...args: any[]) => void;
+    _fbq?: any;
+  }
+}
+
+export const pageview = () => {
+  if (!FB_PIXEL_ID || typeof window === "undefined") return;
+  window.fbq("track", "PageView");
+};
+
+export const event = (name: string, options: Record<string, any> = {}) => {
+  if (!FB_PIXEL_ID || typeof window === "undefined") return;
+  window.fbq("track", name, options);
+};

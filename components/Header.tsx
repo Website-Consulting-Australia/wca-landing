@@ -9,7 +9,7 @@ export default function Header() {
         {/* Left: Logo + Name */}
         <Link href="/" className="flex items-center space-x-3">
           <Image
-            src="/logo-no-capt.png" // logo in /public
+            src="/logo-no-capt-blue.png" // logo in /public
             alt="Website Consulting Australia Logo"
             width={200}
             height={200}
