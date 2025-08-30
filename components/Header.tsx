@@ -26,7 +26,7 @@ export default function Header() {
           <ul className="flex space-x-2 mr-2">
             <li>
               <Link
-                href="/services"
+                href="/#services"
                 className="text-sm text-gray-800 dark:text-white px-4 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               >
                 Services
@@ -34,7 +34,7 @@ export default function Header() {
             </li>
             <li>
               <Link
-                href="/book"
+                href="/#book"
                 className="text-sm font-semibold bg-brand-blue text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
               >
                 Book a Consultation

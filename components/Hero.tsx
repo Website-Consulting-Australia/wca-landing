@@ -75,7 +75,7 @@ export default function Hero() {
             Book a Consultation
           </Link>
           <Link
-            href="/services"
+            href="/#services"
             className="bg-gray-100 text-black/90 dark:bg-gray-800 dark:text-white px-5 py-2 rounded-md text-base font-semibold hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300"
           >
             Our Services
