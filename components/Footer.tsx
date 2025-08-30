@@ -39,7 +39,7 @@ const Footer = () => {
         {/* Right side: social icons */}
         <div className="flex space-x-4">
           <a
-            href="https://facebook.com/yourpage"
+            href="https://www.facebook.com/61579425987899"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Facebook"
@@ -47,17 +47,17 @@ const Footer = () => {
           >
             <AiOutlineFacebook className="w-5 h-5" />
           </a>
+          {/*<a*/}
+          {/*  href="https://linkedin.com/company/yourpage"*/}
+          {/*  target="_blank"*/}
+          {/*  rel="noopener noreferrer"*/}
+          {/*  aria-label="LinkedIn"*/}
+          {/*  className="hover:text-blue-500"*/}
+          {/*>*/}
+          {/*  <AiOutlineLinkedin className="w-5 h-5" />*/}
+          {/*</a>*/}
           <a
-            href="https://linkedin.com/company/yourpage"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            className="hover:text-blue-500"
-          >
-            <AiOutlineLinkedin className="w-5 h-5" />
-          </a>
-          <a
-            href="https://instagram.com/yourpage"
+            href="https://www.instagram.com/websiteconsultingaustralia"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
@@ -65,17 +65,17 @@ const Footer = () => {
           >
             <AiOutlineInstagram className="w-5 h-5" />
           </a>
+          {/*<a*/}
+          {/*  href="https://twitter.com/yourpage"*/}
+          {/*  target="_blank"*/}
+          {/*  rel="noopener noreferrer"*/}
+          {/*  aria-label="X (Twitter)"*/}
+          {/*  className="hover:text-black dark:hover:text-white"*/}
+          {/*>*/}
+          {/*  <AiOutlineX className="w-5 h-5" />*/}
+          {/*</a>*/}
           <a
-            href="https://twitter.com/yourpage"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="X (Twitter)"
-            className="hover:text-black dark:hover:text-white"
-          >
-            <AiOutlineX className="w-5 h-5" />
-          </a>
-          <a
-            href="https://github.com/yourrepo"
+            href="https://github.com/Website-Consulting-Australia"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
