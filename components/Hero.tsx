@@ -37,7 +37,7 @@ export default function Hero() {
         playsInline
         aria-hidden="true"
         className="absolute inset-0 w-full h-full object-cover z-0 filter blur-[2px]"
-        poster="/banner-background-thumbnail.png"
+        poster="/banner-background-thumbnail-v2.png"
       >
         <source src="/banner-background.mp4" type="video/mp4" />
       </video>
