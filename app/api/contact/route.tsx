@@ -61,7 +61,7 @@ export async function POST(req: Request) {
   const safeMsgHtml = escapeHtml(message).replace(/\n/g, "<br/>");
 
   // shared branding
-  const FROM = "Website Consulting Australia <no-reply@websiteconsultingaustralia.com.au>";
+  const FROM = "Website Consulting Australia <contact@websiteconsultingaustralia.com.au>";
   const TO_ADMIN = "hello@websiteconsultingaustralia.com.au";
   const YEAR = new Date().getFullYear();
 
