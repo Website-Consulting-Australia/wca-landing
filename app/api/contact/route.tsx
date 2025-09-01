@@ -27,26 +27,22 @@ async function verifyTurnstile(token: string, ip?: string | null) {
 }
 
 export async function POST(req: Request) {
-  // read JSON body
   let payload: any = {};
   try { payload = await req.json(); } catch {}
 
   const name = String(payload.name || "").trim();
   const email = String(payload.email || "").trim();
   const message = String(payload.message || "").trim();
-  const website = String(payload.website || "");              // honeypot
-  const turnstileToken = String(payload.turnstileToken || ""); // Turnstile token from client
+  const website = String(payload.website || "");               // honeypot
+  const turnstileToken = String(payload.turnstileToken || ""); // Turnstile token
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? null;
 
-  // bot trap
-  if (website) return NextResponse.json({ ok: true });
+  if (website) return NextResponse.json({ ok: true }); // bot trap
 
-  // basic validation
   if (!name || !email || !message) {
     return NextResponse.json({ ok: false, error: "Missing fields" }, { status: 400 });
   }
 
-  // CAPTCHA (if configured)
   const t = await verifyTurnstile(turnstileToken, ip);
   if (!t.success) {
     return NextResponse.json(
@@ -55,28 +51,26 @@ export async function POST(req: Request) {
     );
   }
 
-  // sanitize user content for HTML
+  // sanitize for HTML
   const safeName = escapeHtml(name);
   const safeEmail = escapeHtml(email);
   const safeMsgHtml = escapeHtml(message).replace(/\n/g, "<br/>");
 
-  // shared branding
+  // branding / addresses
   const FROM = "Website Consulting Australia <contact@websiteconsultingaustralia.com.au>";
   const TO_ADMIN = "hello@websiteconsultingaustralia.com.au";
   const YEAR = new Date().getFullYear();
 
-  // --- 1) Send admin notification (authoritative) ---
+  // --- 1) Admin notification (authoritative) ---
   let adminSent = false;
   try {
     await resend.emails.send({
       from: FROM,
       to: TO_ADMIN,
       subject: `New enquiry — ${safeName}`,
-      replyTo: safeEmail, // replying goes to the sender
+      replyTo: safeEmail, // 👈 replies go to the sender
       text:
-        `New enquiry from ${name} <${email}>\n\n` +
-        `${message}\n\n` +
-        `IP: ${ip ?? "n/a"}`,
+        `New enquiry from ${name} <${email}>\n\n${message}\n\nIP: ${ip ?? "n/a"}`,
       html: `
         <table width="100%" cellpadding="0" cellspacing="0" style="font-family:Inter,Arial,sans-serif;color:#0f172a;">
           <tr>
@@ -97,26 +91,25 @@ export async function POST(req: Request) {
     });
     adminSent = true;
   } catch (err: any) {
-    // fail fast if admin mail can't be sent
     return NextResponse.json(
       { ok: false, error: err?.message || "Failed to send admin notification" },
       { status: 500 }
     );
   }
 
-  // --- 2) Send user confirmation (best-effort, non-blocking) ---
+  // --- 2) User confirmation (best-effort, non-blocking) ---
   let confirmSent = false;
   try {
     await resend.emails.send({
       from: FROM,
       to: email,
-      replyTo: TO_ADMIN, // so replies go to your inbox
+      replyTo: TO_ADMIN, // 👈 user replies go to your main inbox
       subject: "We received your message — Website Consulting Australia",
       text:
         `Hi ${name},\n\n` +
         `Thanks for getting in touch — we’ve received your message and will reply shortly.\n\n` +
         `— Website Consulting Australia\n` +
-        `www.websiteconsultingaustralia.com.au\n`,
+        `https://www.websiteconsultingaustralia.com.au\n`,
       html: `
         <table width="100%" cellpadding="0" cellspacing="0" style="font-family:Inter,Arial,sans-serif;color:#0f172a;">
           <tr>
@@ -141,7 +134,6 @@ export async function POST(req: Request) {
     });
     confirmSent = true;
   } catch (err) {
-    // don't fail the request if the confirmation email has issues
     console.warn("Confirmation email failed:", err);
   }
 
