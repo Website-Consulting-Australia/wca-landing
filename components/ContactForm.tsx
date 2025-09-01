@@ -11,35 +11,46 @@ export default function ContactForm() {
   return (
     <form
       className="space-y-4"
+      noValidate
       onSubmit={async (e) => {
         e.preventDefault();
-        const form = e.currentTarget as HTMLFormElement;
-        setSending(true);
-        setOk(null);
-        form.reset();
-        setError(null);
-        const fd = new FormData(e.currentTarget as HTMLFormElement);
-        const payload = Object.fromEntries(fd.entries());
+        const form = e.currentTarget as HTMLFormElement;   // capture once
 
-        // basic honeypot
-        if ((payload as any).website) {
-          setSending(false);
-          setOk(true);
-          form.reset();
-          (e.currentTarget as HTMLFormElement).reset();
+        // read values BEFORE any await/reset
+        const fd = new FormData(form);
+        const name = String(fd.get("name") || "").trim();
+        const email = String(fd.get("email") || "").trim();
+        const message = String(fd.get("message") || "").trim();
+        const website = String(fd.get("website") || "");    // honeypot
+
+        if (!name || !email || !message) {
+          setOk(false);
+          setError("Please fill in all fields.");
           return;
         }
+
+        // honeypot: silently succeed
+        if (website) {
+          setOk(true);
+          form.reset();
+          return;
+        }
+
+        setSending(true);
+        setOk(null);
+        setError(null);
 
         try {
           const res = await fetch("/api/contact", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload),
+            body: JSON.stringify({ name, email, message, website }),
           });
           const j = await res.json().catch(() => ({}));
           if (!res.ok) throw new Error(j?.error || "Failed to send");
+
           setOk(true);
-          (e.currentTarget as HTMLFormElement).reset();
+          form.reset();                                   // reset AFTER success
         } catch (err: any) {
           setOk(false);
           setError(err?.message || "Something went wrong");
@@ -53,31 +64,17 @@ export default function ContactForm() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm text-gray-600 dark:text-gray-300">Name</label>
-          <input
-            name="name"
-            required
-            className="mt-1 w-full rounded border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2"
-          />
+          <input name="name" required className="mt-1 w-full rounded border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2" />
         </div>
         <div>
           <label className="block text-sm text-gray-600 dark:text-gray-300">Email</label>
-          <input
-            type="email"
-            name="email"
-            required
-            className="mt-1 w-full rounded border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2"
-          />
+          <input type="email" name="email" required className="mt-1 w-full rounded border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2" />
         </div>
       </div>
 
       <div>
         <label className="block text-sm text-gray-600 dark:text-gray-300">Message</label>
-        <textarea
-          name="message"
-          rows={6}
-          required
-          className="mt-1 w-full rounded border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2"
-        />
+        <textarea name="message" rows={6} required className="mt-1 w-full rounded border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2" />
       </div>
 
       <button
@@ -91,14 +88,8 @@ export default function ContactForm() {
         By submitting, you agree to our <a href="/privacy" className="underline">Privacy Policy</a>.
       </p>
 
-      {ok === true && (
-        <p className="text-sm text-green-600 mt-2">Thanks! We’ll be in touch shortly.</p>
-      )}
-      {ok === false && (
-        <p className="text-sm text-red-600 mt-2">
-          {error || "Sorry, something went wrong. Please try again."}
-        </p>
-      )}
+      {ok === true && <p className="text-sm text-green-600 mt-2">Thanks! We’ll be in touch shortly.</p>}
+      {ok === false && <p className="text-sm text-red-600 mt-2">{error || "Sorry, something went wrong. Please try again."}</p>}
     </form>
   );
 }
