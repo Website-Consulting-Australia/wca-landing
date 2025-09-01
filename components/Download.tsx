@@ -24,7 +24,7 @@ const Download: React.FC = () => (
           <p className="text-xl text-gray-800 dark:text-gray-300 mb-6 font-light">
             We’ll review <span className="font-semibold">speed</span>,{" "}
             <span className="font-semibold">SEO</span>, and{" "}
-            <span className="font-semibold">UX</span> — then give you a prioritised action plan
+            <span className="font-semibold">UX</span> — then discuss a prioritised action plan
             to improve results fast.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">

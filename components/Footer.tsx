@@ -5,6 +5,7 @@ import {
   AiOutlineLinkedin,
   AiOutlineInstagram,
 } from "react-icons/ai";
+import Link from 'next/link'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -28,12 +29,12 @@ const Footer = () => {
           <a href="/services" className="hover:text-black dark:hover:text-white transition-colors">
             Services
           </a>
-          <a href="/contact" className="hover:text-black dark:hover:text-white transition-colors">
+          <Link href="/contact" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200">
             Contact
-          </a>
-          <a href="/privacy" className="hover:text-black dark:hover:text-white transition-colors">
+          </Link>
+          <Link href="/privacy" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200">
             Privacy
-          </a>
+          </Link>
         </div>
 
         {/* Right side: social icons */}

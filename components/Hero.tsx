@@ -60,11 +60,13 @@ export default function Hero() {
           Website Consulting Australia
         </h1>
         <p className="text-xl text-gray-100 mb-12 font-light max-w-2xl mx-auto">
-          Helping Australian businesses build <span className="font-semibold">faster</span>,
+          Helping Australian businesses build
+          <span className="font-semibold"> faster</span>,
           <span className="font-semibold"> higher-converting websites</span> through expert consulting in
-          <span className="font-semibold"> performance</span>,
-          <span className="font-semibold"> SEO</span>, and
-          <span className="font-semibold"> user experience</span>.
+          <span className="font-semibold"> SEO</span>,
+          <span className="font-semibold"> performance</span>, and
+          <span className="font-semibold"> user experience</span> — all with one goal: turning your website into a
+          <span className="font-semibold"> growth engine</span>.
         </p>
         <div className="flex justify-center gap-4">
           <Link

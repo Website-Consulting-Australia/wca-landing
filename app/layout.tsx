@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { FB_PIXEL_ID } from "lib/fpixel";
-const FbPixelListener = dynamic(() => import("./fb-pixel-listener"), { ssr: false });
-
+import FbPixelListener from "./fb-pixel-listener";  // ✅ normal import of a client component
 
 import "styles/globals.css";
 import Script from 'next/script'
-import dynamic from 'next/dynamic'
 
 export const metadata: Metadata = {
   title: "Website Consulting Australia | Web Consulting & Digital Strategy",

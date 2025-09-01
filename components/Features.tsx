@@ -45,29 +45,26 @@ const Features = () => {
   ];
 
   return (
-    <section id="services" className="container mx-auto px-4 py-12 bg-gray-50 dark:bg-gray-900 transition-colors duration-200 rounded-lg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-gray-900 dark:text-white mb-4">
-            How We Help Your Business Grow
-          </h2>
-          <p className="mt-8 text-xl text-gray-600 dark:text-gray-300 font-light max-w-3xl mx-auto">
-            Website Consulting Australia partners with you to improve
-            <span className="font-semibold"> SEO</span>,
-            <span className="font-semibold"> performance</span>, and
-            <span className="font-semibold"> user experience</span> — all with one goal:
-            turning your website into a <span className="font-semibold">growth engine</span>.
-          </p>
-        </div>
-        <div className="mt-10">
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {features.map((feature, index) => (
-              <FeatureCard key={index} {...feature} />
-            ))}
+      <section
+          id="services"
+          className="w-full bg-gray-50 dark:bg-gray-900 transition-colors duration-200 py-12"
+      >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center">
+                  <h2 className="p-5 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-gray-900 dark:text-white mb-4">
+                      We Help
+                    <span className="text-brand-blue font-semibold"> Your Business Grow</span>
+                  </h2>
+              </div>
+              <div className="mt-10">
+                  <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                    {features.map((feature, index) => (
+                      <FeatureCard key={index} {...feature} />
+                    ))}
+                  </div>
+              </div>
           </div>
-        </div>
-      </div>
-    </section>
+      </section>
   );
 };
 
