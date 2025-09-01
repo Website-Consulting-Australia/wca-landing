@@ -1,12 +1,32 @@
 // components/ContactForm.tsx
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function ContactForm() {
   const [sending, setSending] = useState(false);
   const [ok, setOk] = useState<null | boolean>(null);
   const [error, setError] = useState<string | null>(null);
+  const [token, setToken] = useState<string>("");
+
+  // expose the callback for data-callback below
+  useEffect(() => {
+    (window as any).onTurnstileSuccess = (t: string) => setToken(t);
+    (window as any).onTurnstileExpire = () => setToken("");
+  }, []);
+
+  // load the Turnstile script once
+  useEffect(() => {
+    if (document.querySelector('script[data-turnstile]')) return;
+    const s = document.createElement("script");
+    s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+    s.async = true;
+    s.defer = true;
+    s.setAttribute("data-turnstile", "true");
+    document.body.appendChild(s);
+  }, []);
+
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || process.env.TURNSTILE_SITE_KEY;
 
   return (
     <form
@@ -14,43 +34,36 @@ export default function ContactForm() {
       noValidate
       onSubmit={async (e) => {
         e.preventDefault();
-        const form = e.currentTarget as HTMLFormElement;   // capture once
+        const form = e.currentTarget as HTMLFormElement;
 
-        // read values BEFORE any await/reset
         const fd = new FormData(form);
         const name = String(fd.get("name") || "").trim();
         const email = String(fd.get("email") || "").trim();
         const message = String(fd.get("message") || "").trim();
-        const website = String(fd.get("website") || "");    // honeypot
+        const website = String(fd.get("website") || ""); // honeypot
 
         if (!name || !email || !message) {
-          setOk(false);
-          setError("Please fill in all fields.");
-          return;
+          setOk(false); setError("Please fill in all fields."); return;
+        }
+        if (!token) {
+          setOk(false); setError("Please complete the CAPTCHA."); return;
         }
 
-        // honeypot: silently succeed
-        if (website) {
-          setOk(true);
-          form.reset();
-          return;
-        }
-
-        setSending(true);
-        setOk(null);
-        setError(null);
+        setSending(true); setOk(null); setError(null);
 
         try {
           const res = await fetch("/api/contact", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name, email, message, website }),
+            body: JSON.stringify({ name, email, message, website, turnstileToken: token }),
           });
           const j = await res.json().catch(() => ({}));
           if (!res.ok) throw new Error(j?.error || "Failed to send");
-
           setOk(true);
-          form.reset();                                   // reset AFTER success
+          form.reset();
+          setToken(""); // token is single-use; force re-challenge
+          // reset the widget
+          (window as any).turnstile?.reset?.();
         } catch (err: any) {
           setOk(false);
           setError(err?.message || "Something went wrong");
@@ -76,6 +89,15 @@ export default function ContactForm() {
         <label className="block text-sm text-gray-600 dark:text-gray-300">Message</label>
         <textarea name="message" rows={6} required className="mt-1 w-full rounded border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2" />
       </div>
+
+      {/* Turnstile widget */}
+      <div
+        className="cf-turnstile"
+        data-sitekey={siteKey}
+        data-callback="onTurnstileSuccess"
+        data-expired-callback="onTurnstileExpire"
+        data-theme="auto"
+      />
 
       <button
         disabled={sending}
