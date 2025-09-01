@@ -13,8 +13,10 @@ export default function ContactForm() {
       className="space-y-4"
       onSubmit={async (e) => {
         e.preventDefault();
+        const form = e.currentTarget as HTMLFormElement;
         setSending(true);
         setOk(null);
+        form.reset();
         setError(null);
         const fd = new FormData(e.currentTarget as HTMLFormElement);
         const payload = Object.fromEntries(fd.entries());
@@ -23,6 +25,7 @@ export default function ContactForm() {
         if ((payload as any).website) {
           setSending(false);
           setOk(true);
+          form.reset();
           (e.currentTarget as HTMLFormElement).reset();
           return;
         }
