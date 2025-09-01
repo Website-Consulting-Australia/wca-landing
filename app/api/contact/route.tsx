@@ -121,7 +121,7 @@ export async function POST(req: Request) {
         <table width="100%" cellpadding="0" cellspacing="0" style="font-family:Inter,Arial,sans-serif;color:#0f172a;">
           <tr>
             <td style="padding:24px;max-width:640px;margin:0 auto;">
-              <img src="https://www.websiteconsultingaustralia.com.au/logo-min-padding.png" alt="Website Consulting Australia" style="max-width:180px;margin-bottom:16px;" />
+              <img src="https://www.websiteconsultingaustralia.com.au/logo-no-capt-blue.png" alt="Website Consulting Australia" style="max-width:180px;margin-bottom:16px;" />
               <h2 style="font-size:20px;font-weight:600;margin:0 0 12px;">Thanks for reaching out, ${safeName}!</h2>
               <p style="margin:0 0 12px;">We’ve received your message and will be in touch shortly.</p>
               <p style="margin:0 0 8px;">You sent:</p>
