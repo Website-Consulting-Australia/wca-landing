@@ -1,7 +1,7 @@
-// components/ContactForm.tsx
 "use client";
 
 import { useEffect, useState } from "react";
+import TurnstileWidget from "components/TurnstileWidget";
 
 export default function ContactForm() {
   const [sending, setSending] = useState(false);
@@ -9,24 +9,7 @@ export default function ContactForm() {
   const [error, setError] = useState<string | null>(null);
   const [token, setToken] = useState<string>("");
 
-  // expose the callback for data-callback below
-  useEffect(() => {
-    (window as any).onTurnstileSuccess = (t: string) => setToken(t);
-    (window as any).onTurnstileExpire = () => setToken("");
-  }, []);
-
-  // load the Turnstile script once
-  useEffect(() => {
-    if (document.querySelector('script[data-turnstile]')) return;
-    const s = document.createElement("script");
-    s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
-    s.async = true;
-    s.defer = true;
-    s.setAttribute("data-turnstile", "true");
-    document.body.appendChild(s);
-  }, []);
-
-  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || process.env.TURNSTILE_SITE_KEY;
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "";
 
   return (
     <form
@@ -91,16 +74,15 @@ export default function ContactForm() {
       </div>
 
       {/* Turnstile widget */}
-      <div
-        className="cf-turnstile"
-        data-sitekey={siteKey}
-        data-callback="onTurnstileSuccess"
-        data-expired-callback="onTurnstileExpire"
-        data-theme="auto"
+      <TurnstileWidget
+        siteKey={siteKey}
+        theme="auto"
+        onVerify={(t) => setToken(t)}
+        onExpired={() => setToken("")}
       />
 
       <button
-        disabled={sending}
+        disabled={sending || !token}
         className="rounded bg-blue-600 text-white px-5 py-2.5 hover:bg-blue-700 disabled:opacity-60 focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
         {sending ? "Sending…" : "Send Message"}
