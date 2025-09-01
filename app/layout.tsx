@@ -5,6 +5,7 @@ import FbPixelListener from "./fb-pixel-listener";  // ✅ normal import of a cl
 
 import "styles/globals.css";
 import Script from 'next/script'
+import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: "Website Consulting Australia | Web Consulting & Digital Strategy",
@@ -53,7 +54,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="bg-white dark:bg-black min-h-screen">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <FbPixelListener />
+          <Suspense fallback={null}>
+            <FbPixelListener />
+          </Suspense>
           {children}
         </ThemeProvider>
       </body>
